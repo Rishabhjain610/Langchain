@@ -9,9 +9,10 @@ class Movie(TypedDict):
     rating: int      # Movie ki rating (integer)
     year: int        # Movie ka release year (integer)
     
+    key_themes:Annotated[list[str], "key themes of the movie"]
     # Annotated ka use karke hum extra description de rahe hain LLM ko samjhane ke liye
     summary: Annotated[str, "summary of the movie"]
-    
+    sentiment: Annotated[str, "sentiment of the movie"]
     # Optional[list[str]] ka matlab hai ki ye field ek list of strings ho sakti hai, ya phir None (kuch nahi)
     pros: Annotated[Optional[list[str]], "list of pros"]
     cons: Annotated[Optional[list[str]], "list of cons"]
@@ -23,7 +24,7 @@ class MovieList(TypedDict):
 
 # Ollama model ko setup aur initialize kar rahe hain
 llm = ChatOllama(
-    model='qwen2.5-coder:7b',         # Model ka naam
+    model='llama3.1:8b',         # Model ka naam
     base_url='http://127.0.0.1:11434' # Local Ollama server ka address
 )
 
